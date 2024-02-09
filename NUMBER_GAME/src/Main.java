@@ -1,3 +1,4 @@
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -5,14 +6,41 @@ public class Main {
 
     public static void main(String[] args) {
 
+        int lives = 3;
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Guess the number generated");
-        String guessed_number = scanner.nextLine();
-
-        int random_number = random.nextInt(101);
+        int random_number = random.nextInt(10); // Generating a random number as integer
         System.out.println(random_number);
+
+        while (true)
+        {
+            System.out.println("Guess the number generated");
+            String guessed_string = scanner.nextLine(); // Getting the users input as string
+            int guessed_number = Integer.parseInt(guessed_string);
+
+            if (Objects.equals(guessed_number, random_number)) {
+                System.out.println("You WON!!!");
+                break;
+            }
+            else if (lives == 1) {
+                System.out.println("You LOST!!!");
+                break;
+            }
+            else if (guessed_number < random_number) {
+                System.out.println("Too low");
+                lives = lives-1;
+                System.out.println("Lives left: " + lives);
+            }
+            else if (guessed_number > random_number) {
+                System.out.println("Too high");
+                lives = lives-1;
+                System.out.println("Lives left: " + lives);
+            }
+
+        }
+
+
     }
 
 }
