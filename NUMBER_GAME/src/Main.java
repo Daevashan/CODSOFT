@@ -1,6 +1,7 @@
 import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class Main {
 
@@ -8,14 +9,13 @@ public class Main {
     {
         Random random = new Random();
 
-        int random_number = random.nextInt(10); // Generating a random number as integer
-        System.out.println(random_number);
+        int random_number = random.nextInt(100); // Generating a random number as integer
         return random_number;
     };
 
     public static void main(String[] args) {
 
-        int lives = 3;
+        int lives = 9;
         int round = 1;
         Scanner scanner = new Scanner(System.in);
 
@@ -23,30 +23,28 @@ public class Main {
 
         while (true)
         {
-            System.out.println("Round: " + round);
-            System.out.println("Guess the number generated");
-            String guessed_string = scanner.nextLine(); // Getting the users input as string
-            int guessed_number = Integer.parseInt(guessed_string);
+            int Guessed_number = Integer.parseInt(JOptionPane.showInputDialog("Round: " + round + "\n\nGuess the number generated"));
 
-            if (Objects.equals(guessed_number, random_number)) {
-                System.out.println("You WON!!!");
+            if (Objects.equals(Guessed_number, random_number)) {
+                JOptionPane.showMessageDialog(null,"You WON! \n Your score: " + round * 10);
                 round = round + 1;
                 random_number = generate_random_number();
                 lives = 3;
-            }
-            else if (lives == 1) {
-                System.out.println("You LOST!!!");
+
+            } else if (lives == 1) {
+                JOptionPane.showMessageDialog(null,"You LOST!");
                 break;
             }
-            else if (guessed_number < random_number) {
-                System.out.println("Too low");
+            else if (Guessed_number < random_number) {
                 lives = lives-1;
-                System.out.println("Lives left: " + lives);
+                JOptionPane.showMessageDialog(null,"Too low \n Lives left: " + lives);
             }
-            else if (guessed_number > random_number) {
-                System.out.println("Too high");
+            else if (Guessed_number > random_number) {
                 lives = lives-1;
-                System.out.println("Lives left: " + lives);
+                JOptionPane.showMessageDialog(null,"Too high \n Lives left: " + lives);
+            }
+            else {
+                System.out.println(111);
             }
 
         }
