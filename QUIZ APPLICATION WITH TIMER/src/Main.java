@@ -12,7 +12,7 @@ public class Main {
 
         List<QuizQuestion> questions = Arrays.asList(question1, question2);
 
-        // Set time limit for each question (e.g., 20 seconds)
+        // Set time limit for each question
         int timeLimitPerQuestion = 20;
 
         // Create a quiz instance
